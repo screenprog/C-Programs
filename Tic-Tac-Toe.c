@@ -10,9 +10,9 @@ struct player
 }p1, p2, computer;
 
 int mod, cpos;
-int Drow=1;
+int drow=1;
 char xo[][3]={'1','2','3','4','5','6','7','8','9'};
-int i, j, chance, flag, Win=0;
+int i, j, chance, flag, win=0;
 char pos;
 
 int dai1 = 1, dai2 = 1, ver1 = 1, ver2 = 1, ver3 = 1, hor1 = 1, hor2 = 1, hor3 = 1;
@@ -23,15 +23,15 @@ void display(char (*p)[3])
 	int i,j;
 	for(i=0;i<3;i++)
 	{
-		printf("___________________ \n| ");
+		printf("\t\t_________________________ \n\n\t\t| ");
 		for(j=0;j<3;j++)
 		{
 			printf("%3c",*(*(p+i)+j));
-			printf(" | ");
+			printf("   | ");
 		}
 		printf("\n");
 	}
-		printf("___________________");
+		printf("\t\t_________________________");
 }
 
 char vertical(char (*p)[3])
@@ -103,11 +103,11 @@ char checkwin(char (*p)[3])
 	return 0;
 }
 
-int Won(char win)
+int check_winner(char win)
 {
 	if(win!=0)
 	{
-		Drow=0;
+		drow=0;
 
 		(mod == 1 && win == computer.symbol)?
 		printf("\n Computer won the match (O) : \n"):
@@ -150,7 +150,7 @@ int counterAlgo()
 		{
 			xo[2][2] = 'O';
 			dai1 = 0;
-			return 1;
+			return 9;
 		}
 		else if(xo[1][1] == xo[2][2])
 		{
@@ -162,7 +162,7 @@ int counterAlgo()
 		{
 			xo[1][1] = 'O';
 			dai1 = 0;
-			return 1;
+			return 5;
 		}
 	}
 	if(dai2)
@@ -171,19 +171,19 @@ int counterAlgo()
 		{
 			xo[1][1] = 'O';
 			dai2 = 0;
-			return 1;
+			return 5;
 		}
 		else if(xo[1][1] == xo[2][0])
 		{
 			xo[0][2] = 'O';
 			dai2 = 0;
-			return 1;
+			return 3;
 		}
 		else if(xo[1][1] == xo[0][2])
 		{
 			xo[2][0] = 'O';
 			dai2 = 0;
-			return 1;
+			return 7;
 		}
 	}
 	if(ver1)
@@ -192,7 +192,7 @@ int counterAlgo()
 		{
 			xo[2][0] = 'O';
 			ver1 = 0;
-			return 1;
+			return 7;
 		}
 		else if(xo[1][0] == xo[2][0])
 		{
@@ -204,7 +204,7 @@ int counterAlgo()
 		{
 			xo[1][0] = 'O';
 			ver1 = 0;
-			return 1;
+			return 4;
 		}
 	}
 	if(ver2)
@@ -213,19 +213,19 @@ int counterAlgo()
 		{
 			xo[2][1] = 'O';
 			ver2 = 0;
-			return 1;
+			return 8;
 		}
 		else if(xo[1][1] == xo[2][1])
 		{
 			xo[0][1] = 'O';
 			ver2 = 0;
-			return 1;
+			return 2;
 		}
 		else if(xo[0][1] == xo[2][1])
 		{
 			xo[1][1] = 'O';
 			ver2 = 0;
-			return 1;
+			return 5;
 		}
 	}
 	if(ver3)
@@ -234,19 +234,19 @@ int counterAlgo()
 		{
 			xo[2][2] = 'O';
 			ver3 = 0;
-			return 1;
+			return 9;
 		}
 		else if(xo[1][2] == xo[2][2])
 		{
 			xo[0][2] = 'O';
 			ver3 = 0;
-			return 1;
+			return 3;
 		}
 		else if(xo[0][2] == xo[2][2])
 		{
 			xo[1][2] = 'O';
 			ver3 = 0;
-			return 1;
+			return 6;
 		}
 	}
 	if(hor1)
@@ -255,7 +255,7 @@ int counterAlgo()
 		{
 			xo[0][2] = 'O';
 			hor1 = 0;
-			return 1;
+			return 3;
 		}
 		else if(xo[0][1] == xo[0][2])
 		{
@@ -267,7 +267,7 @@ int counterAlgo()
 		{
 			xo[0][1] = 'O';
 			hor1 = 0;
-			return 1;
+			return 2;
 		}
 	}
 	if(hor2)
@@ -276,19 +276,19 @@ int counterAlgo()
 		{
 			xo[1][2] = 'O';
 			hor2 = 0;
-			return 1;
+			return 6;
 		}
 		else if(xo[1][1] == xo[1][2])
 		{
 			xo[1][0] = 'O';
 			hor2 = 0;
-			return 1;
+			return 4;
 		}
 		else if(xo[1][0] == xo[1][2])
 		{
 			xo[1][1] = 'O';
 			hor2 = 0;
-			return 1;
+			return 5;
 		}
 	}
 	if(hor3)
@@ -297,19 +297,19 @@ int counterAlgo()
 		{
 			xo[2][2] = 'O';
 			hor3 = 0;
-			return 1;
+			return 9;
 		}
 		else if(xo[2][1] == xo[2][2])
 		{
 			xo[2][0] = 'O';
 			hor3 = 0;
-			return 1;
+			return 7;
 		}
 		else if(xo[2][0] == xo[2][2])
 		{
 			xo[2][1] = 'O';
 			hor3 = 0;
-			return 1;
+			return 8;
 		}
 	}
 
@@ -325,7 +325,7 @@ int winAlgo()
 			{
 				xo[2][2] = 'O';
 				dai1 = 0;
-				return 1;
+				return 9;
 			}
 
 			else if (xo[1][1] == 'O' && xo[2][2] == 'O')
@@ -341,7 +341,7 @@ int winAlgo()
 
 					xo[1][1] = 'O';
 					dai1 = 0;
-					return 1;
+					return 5;
 			}
 	}
 
@@ -352,7 +352,7 @@ int winAlgo()
 
 					xo[2][0] = 'O';
 					dai2 = 0;
-					return 1;
+					return 7;
 			}
 
 			else if (xo[1][1] == 'O' && xo[2][0] == 'O')
@@ -360,7 +360,7 @@ int winAlgo()
 
 					xo[0][2] = 'O';
 					dai2 = 0;
-					return 1;
+					return 3;
 			}
 
 			else if(xo[0][2] == 'O' && xo[2][0] == 'O')
@@ -368,7 +368,7 @@ int winAlgo()
 
 					xo[1][1] = 'O';
 					dai2 = 0;
-					return 1;
+					return 5;
 			}
 
 	}
@@ -379,7 +379,7 @@ int winAlgo()
 			{
 				xo[2][0] = 'O';
 				ver1 = 0;
-				return 1;
+				return 7;
 			}
 
 			else if (xo[1][0] == 'O' && xo[2][0] == 'O')
@@ -394,7 +394,7 @@ int winAlgo()
 			{
 				xo[1][0] = 'O';
 				ver1 = 0;
-				return 1;
+				return 4;
 
 			}
 
@@ -406,19 +406,19 @@ int winAlgo()
 			{
 				xo[2][1] = 'O';
 				ver2 = 0;
-				return 1;
+				return 8;
 			}
 			else if (xo[1][1] == 'O' && xo[2][1] == 'O')
 			{
 				xo[0][1] = 'O';
 				ver2 = 0;
-				return 1;
+				return 2;
 			}
 			else if(xo[0][1] == 'O' && xo[2][1] == 'O')
 			{
 				xo[1][1] = 'O';
 				ver2 = 0;
-				return 1;
+				return 5;
 			}
 
 	}
@@ -428,19 +428,19 @@ int winAlgo()
 			{
 				xo[2][2] = 'O';
 				ver3 = 0;
-				return 1;
+				return 9;
 			}
 			else if (xo[1][2] == 'O' && xo[2][2] == 'O')
 			{
 				xo[0][2] = 'O';
 				ver3 = 0;
-				return 1;
+				return 3;
 			}
 			else if(xo[0][2] == 'O' && xo[2][2] == 'O')
 			{
 				xo[1][2] = 'O';
 				ver3 = 0;
-				return 1;
+				return 6;
 			}
 
 	}
@@ -451,7 +451,7 @@ int winAlgo()
 			{
 				xo[0][2] = 'O';
 				hor1 = 0;
-				return 1;
+				return 3;
 			}
 			else if (xo[0][1] == 'O' && xo[0][2] == 'O')
 			{
@@ -463,7 +463,7 @@ int winAlgo()
 			{
 				xo[0][1] = 'O';
 				hor1 = 0;
-				return 1;
+				return 2;
 			}
 
 	}
@@ -473,19 +473,19 @@ int winAlgo()
 			{
 				xo[1][2] = 'O';
 				hor2 = 0;
-				return 1;
+				return 6;
 			}
 			else if (xo[1][1] == 'O' && xo[1][2] == 'O')
 			{
 				xo[1][0] = 'O';
 				hor2 = 0;
-				return 1;
+				return 4;
 			}
 			else if(xo[1][0] == 'O' && xo[1][2] == 'O')
 			{
 				xo[1][1] = 'O';
 				hor2 = 0;
-				return 1;
+				return 5;
 			}
 
 	}
@@ -495,19 +495,19 @@ int winAlgo()
 			{
 				xo[2][2] = 'O';
 				hor3 = 0;
-				return 1;
+				return 9;
 			}
 			else if (xo[2][1] == 'O' && xo[2][2] == 'O')
 			{
 				xo[2][0] = 'O';
 				hor3 = 0;
-				return 1;
+				return 7;
 			}
 			else if(xo[2][0] == 'O' && xo[2][2] == 'O')
 			{
 				xo[2][1] = 'O';
 				hor3 = 0;
-				return 1;
+				return 8;
 			}
 	}
 	return 0;
@@ -515,14 +515,23 @@ int winAlgo()
 
 void tictackalgo()
 {
-	
+	int win_flag = 0;
+	int counter_flag = 0;
 	// Decision for winning
-	if(winAlgo() == 1)
-	return;
+	win_flag = winAlgo();
+	if(win_flag >= 1)
+	{
+		printf("%d\n",win_flag);
+		return;
+	}
 
 	// Decision for Countering
-	if(counterAlgo() == 1)
+	counter_flag = counterAlgo();
+	if(counter_flag >= 1)
+	{
+		printf("%d\n",counter_flag);		
 		return;
+	}
 
 
 
@@ -533,6 +542,7 @@ void tictackalgo()
 	}
 	while(xo[0][cpos] == 'X' || xo[0][cpos] == 'O');
 	xo[0][cpos] = 'O';
+	printf("%d\n",cpos+1);		
 
 }
 
@@ -623,12 +633,13 @@ void computerplay()
 	int cflag=0;
 	if(chance%2==0)
 	{
-
-		printf("\n Computer has chosen O on position : ");
+		sleep(2);
+		printf("\n Computer have placed \"O\" on position : ");
 		if(chance == 2 && xo[1][1] != 'X')
 		{	
 			xo[1][1] = 'O';
 			flag = 1;
+			printf("%d\n",5);
 			return;
 		}
 		if(chance == 2)
@@ -647,13 +658,12 @@ void computerplay()
 
 		tictackalgo();
 		flag = 1;
-
-
 	}
 	else
 	{
+		sleep(2);
 		printf("\n %s choose Position for (%c) : ",p1.name,p1.symbol);
-		pos=getch();
+		pos=getche();
 		for(i=0;i<3;i++)
 		{
 			for(j=0;j<3;j++)
@@ -671,41 +681,48 @@ void computerplay()
 }
 int main()
 {
+	int l;
 	p1.symbol = 'X';
 	p2.symbol = 'O';
 	char play;
+	printf("To play with computer press 1 \nTo play with human press 2 : ");
+	scanf("%d",&mod);
+	if(mod == 1)
+	{
+		fflush(stdin);
+		printf("Enter you name : ");
+		gets(p1.name);
+		strcpy(computer.name,"Computer");
+		computer.symbol = 'O';
+	}
+	else if(mod == 2)
+	{
+		printf("\n Symbol for player 1 : %c",p1.symbol);
+		printf("\n Symbol for player 2 : %c",p2.symbol);
+		printf("\n Player 1 Enter Your Name : ");
+		gets(p1.name);
+		printf("\n Player 2 Enter your Name : ");
+		gets(p2.name);
+	}
+	else
+	{
+		printf("\n\n Wrong input \n\n");
+		main();
+		return;
+	}
+	
 	do
 	{
-		printf("To play with computer press 1 \nTo play with human press 2 : ");
-		scanf("%d",&mod);
-		if(mod == 1)
-		{
-			fflush(stdin);
-			printf("Enter you name : ");
-			gets(p1.name);
-			strcpy(computer.name,"Computer");
-			computer.symbol = 'O';
-		}
-		else if(mod == 2)
-		{
-			printf("\n Symbol for player 1 : %c",p1.symbol);
-			printf("\n Symbol for player 2 : %c",p2.symbol);
-			printf("\n Player 1 Enter Your Name : ");
-			gets(p1.name);
-			printf("\n Player 2 Enter your Name : ");
-			gets(p2.name);
-		}
-		else
-		{
-			printf("\n\n Wrong input \n\n");
-			main();
-			return;
-		}
+		drow = 1;
+		dai1 = 1, dai2 = 1, ver1 = 1, ver2 = 1, ver3 = 1, hor1 = 1, hor2 = 1, hor3 = 1;
+		for(l=0; l<9; l++)
+			xo[0][l] = 49+l;
+		
 		for(chance=1;chance<10;chance++)
 		{
 			again:
 			flag=0;
-			printf("\n XO Table : \n\n");
+			printf("\n\t\t\tXO Table : \n\n");
 			display(xo);
 			fflush(stdin);
 			if(mod == 1)
@@ -718,14 +735,14 @@ int main()
 				printf("\n Wrong Position try again \n");
 				goto again;
 			}
-			Win=checkwin(xo);
-			if(Won(Win))break;
+			win=checkwin(xo);
+			if(check_winner(win)) break;
 		}
-		if(Drow)
-			printf("\n Match Drow : \n");
+		if(drow)
+			printf("\n \t\t\tMatch Drow : \n");
 		display(xo);
 		getch();
-		printf("\nTo play again press y else n : ");
+		printf("\nTo play again press y : ");
 		scanf("%c",&play);
 		system("cls");
 	}while(play=='y');
